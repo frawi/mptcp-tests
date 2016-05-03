@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 def create_network(paths, bw, loss, latency):
     from mininet.net import Mininet
