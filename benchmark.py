@@ -6,7 +6,7 @@ def create_network(paths, bw, loss, latency):
     from mininet.node import CPULimitedHost, Controller
     from mininet.log import info
 
-    net = Mininet(controller=Controller, link=TCLink, host=CPULimitedHost)
+    net = Mininet(controller=Controller, link=TCLink)
 
     # since we need a switch we also need a controller
     c0 = net.addController('c0')
@@ -88,7 +88,7 @@ def start_bwm(node, filename=None):
 
     cmd = ["bwm-ng", "-u", "bits"]
     if filename:
-        return node.popen(["-o", "csv", "-F", filename, "-T", "sum"])
+        return node.popen(cmd + ["-o", "csv", "-F", filename, "-T", "sum"])
     else:
         makeTerm(node, cmd="bash -c '%s || read'"% " ".join(cmd))
         return None
